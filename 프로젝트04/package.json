@@ -1,0 +1,10 @@
+{
+  "name": "url2qr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "URL을 QR코드로 만들고 JPG로 다운로드하는 정적 웹사이트",
+  "scripts": {
+    "start": "node server.mjs",
+    "build": "node scripts/build.mjs"
+  }
+}

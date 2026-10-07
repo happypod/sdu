@@ -1,0 +1,60 @@
+name: Deploy URL2QR to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '프로젝트04/index.html'
+      - '프로젝트04/styles.css'
+      - '프로젝트04/app.js'
+      - '프로젝트04/favicon.svg'
+      - '프로젝트04/img/**'
+      - '프로젝트04/vendor/**'
+      - '프로젝트04/scripts/build.mjs'
+      - '프로젝트04/package.json'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Check JavaScript and build static site
+        working-directory: 프로젝트04
+        run: |
+          node --check app.js
+          node --check vendor/qrcodegen.js
+          npm run build
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 프로젝트04/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
