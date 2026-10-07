@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const output = resolve(root, "dist");
-const assets = ["index.html", "styles.css", "app.js", "favicon.svg", "img/logo.png", "vendor/qrcodegen.js"];
+const assets = ["index.html", "styles.css", "app.js", "favicon.svg", "img/logo.png", "vendor/qrcodegen.js", ".nojekyll"];
 
 // Validate the complete source set before writing a deployment directory.
 await Promise.all(assets.map(asset => readFile(resolve(root, asset))));

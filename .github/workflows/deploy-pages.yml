@@ -4,14 +4,15 @@ on:
   push:
     branches: [main]
     paths:
-      - '프로젝트04/index.html'
-      - '프로젝트04/styles.css'
-      - '프로젝트04/app.js'
-      - '프로젝트04/favicon.svg'
-      - '프로젝트04/img/**'
-      - '프로젝트04/vendor/**'
-      - '프로젝트04/scripts/build.mjs'
-      - '프로젝트04/package.json'
+      - 'index.html'
+      - 'styles.css'
+      - 'app.js'
+      - 'favicon.svg'
+      - 'img/**'
+      - 'vendor/**'
+      - 'scripts/build.mjs'
+      - 'package.json'
+      - '.nojekyll'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -35,7 +36,6 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Check JavaScript and build static site
-        working-directory: 프로젝트04
         run: |
           node --check app.js
           node --check vendor/qrcodegen.js
@@ -43,7 +43,7 @@ jobs:
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 프로젝트04/dist
+          path: dist
 
   deploy:
     needs: build

@@ -68,4 +68,4 @@ Node의 통제된 이벤트/프레임 검증 환경에서 다음을 확인했다
 
 ## 확인 방법
 
-[http://localhost:4173](http://localhost:4173)을 열고 마우스를 움직인다. `index.html`을 직접 브라우저로 열어도 사용할 수 있다. 모든 소스와 문서는 `F:\moalab\SDU\프로젝트04`에 있다.
+[http://localhost:4173](http://localhost:4173)을 열고 마우스를 움직인다. `index.html`을 직접 브라우저로 열어도 사용할 수 있다. 모든 소스와 문서는 저장소 루트 `F:\moalab\SDU`에 있다.
