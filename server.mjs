@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const port = Number(process.env.PORT || 4173);
-const publicFiles = new Set(["index.html", "styles.css", "app.js", "favicon.svg", "img/logo.png", "vendor/qrcodegen.js"]);
+const publicFiles = new Set(["index.html", "styles.css", "gradient.js", "favicon.svg", "img/logo.png", "vendor/qrcodegen.js", "url2qr/index.html", "url2qr/app.js", "urlShort/index.html", "urlShort/app.js", "urlShort/styles.css"]);
 const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "application/javascript; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png" };
 
 const server = http.createServer(async (request, response) => {
@@ -15,7 +15,7 @@ const server = http.createServer(async (request, response) => {
   }
   try {
     const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
-    const relative = pathname === "/" ? "index.html" : pathname.slice(1);
+    const relative = pathname.endsWith("/") ? pathname.slice(1) + "index.html" : pathname.slice(1);
     const filePath = resolve(root, relative);
     if (!publicFiles.has(relative) || !filePath.startsWith(root + sep)) {
       response.writeHead(404).end("Not found");

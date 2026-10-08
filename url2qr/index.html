@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffcb05" />
+    <meta name="description" content="URL을 QR코드로 바꾸고, 클릭 한 번으로 JPG 이미지를 저장하세요." />
+    <title>URL2QR — QR코드 만들기</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../vendor/qrcodegen.js" defer></script>
+    <script src="../gradient.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient-gradient" id="ambient-gradient" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="URL2QR 처음으로">
+        <img src="../img/logo.png" width="306" height="79" alt="URL2QR" />
+      </a>
+      <nav class="tool-nav" aria-label="도구 선택">
+        <a href="./index.html" aria-current="page">QR코드</a>
+        <a href="../urlShort/index.html">URL단축</a>
+      </nav>
+    </header>
+
+    <main class="workspace" id="workspace">
+      <section class="qr-result" id="qr-result" aria-label="생성된 QR코드" hidden>
+        <div class="qr-frame">
+          <span class="corner corner-tl" aria-hidden="true"></span>
+          <span class="corner corner-tr" aria-hidden="true"></span>
+          <span class="corner corner-bl" aria-hidden="true"></span>
+          <span class="corner corner-br" aria-hidden="true"></span>
+          <button class="qr-download" id="qr-download" type="button" aria-label="QR코드를 JPG 파일로 다운로드" aria-describedby="download-hint">
+            <canvas id="qr-canvas" width="1024" height="1024" role="img" aria-label="입력한 URL의 QR코드"></canvas>
+            <span class="download-overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4" /></svg>
+              JPG 저장
+            </span>
+          </button>
+        </div>
+        <p class="download-hint" id="download-hint">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 3 11 8-6 1-3 6-2-15Z" /></svg>
+          QR코드를 클릭하면 JPG로 저장됩니다
+        </p>
+      </section>
+
+      <section class="input-pane" aria-label="URL 입력">
+        <div class="introduction">
+          <span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> URL TO QR</span>
+          <h1>링크를 <span class="heading-accent">QR코드로.</span></h1>
+          <p>공유하고 싶은 URL을 입력해 주세요.</p>
+        </div>
+        <form id="url-form" novalidate>
+          <label class="sr-only" for="url-input">QR코드로 만들 URL</label>
+          <div class="input-shell">
+            <svg class="link-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m10 13 4-4m-5 7-1 1a4.2 4.2 0 0 1-6-6l4-4a4.2 4.2 0 0 1 6 0m0 3a4.2 4.2 0 0 1 6 0l4-4a4.2 4.2 0 0 0-6-6l-1 1" transform="translate(0 2) scale(.9)" /></svg>
+            <input id="url-input" name="url" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="https://example.com" aria-describedby="input-note form-error" required />
+            <button class="submit-button" type="submit" id="submit-button">확인</button>
+          </div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+        </form>
+        <p class="input-note" id="input-note">
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V5a3 3 0 0 1 6 0v3"/></svg>
+          URL은 브라우저 안에서만 처리됩니다
+        </p>
+      </section>
+      <noscript><p class="noscript-note">QR코드를 만들려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+    </main>
+
+    <footer class="site-footer">
+      <span>URL2QR</span>
+      <span>입력하고, 만들고, 저장하세요.</span>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="sr-only" id="generation-status" role="status" aria-live="polite"></div>
+  </body>
+</html>

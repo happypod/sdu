@@ -6,7 +6,9 @@ on:
     paths:
       - 'index.html'
       - 'styles.css'
-      - 'app.js'
+      - 'gradient.js'
+      - 'url2qr/**'
+      - 'urlShort/**'
       - 'favicon.svg'
       - 'img/**'
       - 'vendor/**'
@@ -37,7 +39,9 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Check JavaScript and build static site
         run: |
-          node --check app.js
+          node --check gradient.js
+          node --check url2qr/app.js
+          node --check urlShort/app.js
           node --check vendor/qrcodegen.js
           npm run build
       - name: Upload site

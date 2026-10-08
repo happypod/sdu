@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffcb05" />
+    <meta name="description" content="긴 URL을 짧게 만들고 복사해 간편하게 공유하세요." />
+    <title>URL2QR — URL단축</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="../gradient.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient-gradient" id="ambient-gradient" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="URL2QR 처음으로"><img src="../img/logo.png" width="306" height="79" alt="URL2QR" /></a>
+      <nav class="tool-nav" aria-label="도구 선택">
+        <a href="../url2qr/index.html">QR코드</a>
+        <a href="./index.html" aria-current="page">URL단축</a>
+      </nav>
+    </header>
+    <main class="short-workspace">
+      <section class="short-tool" aria-labelledby="short-heading">
+        <div class="introduction">
+          <span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> SHORTEN YOUR LINK</span>
+          <h1 id="short-heading">긴 링크도 <span class="heading-accent">짧고 간편하게.</span></h1>
+          <p>주소는 짧게, 공유는 더 쉽게.</p>
+        </div>
+        <div class="short-panel">
+          <form id="shorten-form" novalidate aria-busy="false">
+            <label class="field-label" for="shorten-input">URL 입력</label>
+            <div class="input-shell">
+              <svg class="link-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m10 13 4-4m-5 7-1 1a4.2 4.2 0 0 1-6-6l4-4a4.2 4.2 0 0 1 6 0m0 3a4.2 4.2 0 0 1 6 0l4-4a4.2 4.2 0 0 0-6-6l-1 1" transform="translate(0 2) scale(.9)" /></svg>
+              <input id="shorten-input" name="url" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="https://example.com/your-long-link" aria-describedby="shorten-note shorten-error" required />
+              <button class="submit-button" id="shorten-button" type="submit" disabled>단축하기</button>
+            </div>
+            <p class="form-error" id="shorten-error" role="alert" hidden></p>
+            <p class="short-note" id="shorten-note">입력한 URL은 단축을 위해 da.gd 서비스로 전송됩니다.</p>
+          </form>
+          <div class="short-result">
+            <label class="field-label" for="shorten-output">단축 URL</label>
+            <div class="output-shell">
+              <input id="shorten-output" type="text" readonly placeholder="단축한 URL이 여기에 표시됩니다" aria-describedby="shorten-status" />
+              <button class="copy-button" id="copy-button" type="button" disabled>
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></svg>
+                복사
+              </button>
+            </div>
+            <p class="short-status" id="shorten-status" role="status" aria-live="polite" aria-atomic="true">URL을 입력하고 단축하기를 눌러 주세요.</p>
+          </div>
+        </div>
+        <p class="service-caption">Powered by <a href="https://da.gd/" target="_blank" rel="noopener noreferrer">da.gd</a></p>
+      </section>
+      <noscript><p class="form-error">URL을 단축하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+    </main>
+    <footer class="site-footer"><span>URL2QR</span><span>링크 하나로, 더 가까이.</span></footer>
+  </body>
+</html>

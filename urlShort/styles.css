@@ -1,0 +1,32 @@
+.short-workspace { min-height: calc(100svh - 144px); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px 24px; }
+.short-tool { width: min(640px, 100%); text-align: center; }
+.short-tool h1 { font-size: clamp(1.9rem, 4.5vw, 2.65rem); }
+.short-panel { padding: 30px; border: 1px solid #fff; border-radius: 24px; background: #ffffffaa; box-shadow: 0 20px 60px #9b782b0c; text-align: left; }
+.field-label { display: block; margin: 0 0 11px; font-size: .875rem; font-weight: 700; }
+#shorten-input, #shorten-output { width: 100%; min-width: 0; padding: 10px 0; border: 0; background: transparent; outline: none; color: var(--ink); font-size: .9375rem; line-height: 1.5; }
+#shorten-input::placeholder, #shorten-output::placeholder { color: #897962; }
+#shorten-input:read-only { color: var(--muted); }
+.short-panel .submit-button { flex-basis: auto; min-width: 104px; white-space: nowrap; }
+.short-panel button:disabled { cursor: not-allowed; opacity: .48; }
+.short-panel [aria-busy="true"] .submit-button { cursor: wait; }
+.short-note { margin: 12px 2px 0; font-size: .75rem; line-height: 1.7; color: var(--muted); }
+.short-result { margin-top: 28px; padding-top: 26px; border-top: 1px solid #d9cba566; }
+.output-shell { display: flex; align-items: center; gap: 14px; padding: 8px 8px 8px 18px; border: 1px solid #c6d9d4; border-radius: 16px; background: #f1faf7b3; }
+.output-shell:focus-within { outline: 3px solid #93bcb166; outline-offset: 2px; }
+.copy-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; min-width: 86px; padding: 12px 15px; border: 1px solid #b6cfc7; border-radius: 10px; background: #fff; color: #35574d; font-size: .875rem; font-weight: 700; }
+.copy-button:hover:enabled { background: #e4f4ef; }
+.copy-button { flex: 0 0 auto; white-space: nowrap; }
+.copy-button svg { flex-shrink: 0; }
+.short-status { min-height: 23px; margin: 12px 2px 0; font-size: .8125rem; line-height: 1.7; color: #49645b; }
+.service-caption { margin: 18px 0 0; font: .75rem/1.5 "Segoe UI", sans-serif; color: var(--muted); }
+.service-caption a { color: inherit; text-underline-offset: 3px; }
+@media (max-width: 600px) {
+  .short-workspace { min-height: calc(100svh - 124px); padding: 48px 20px; }
+  .short-panel { padding: 22px 18px; }
+  .short-panel .input-shell { flex-wrap: wrap; gap: 0 10px; padding: 12px; }
+  #shorten-input { flex: 1; width: 0; }
+  .short-panel .submit-button { flex-basis: 100%; margin-top: 8px; }
+  .output-shell { gap: 8px; padding-left: 12px; }
+  .copy-button { min-width: 72px; padding: 12px; }
+  .short-tool h1 { font-size: clamp(1.65rem, 6.5vw, 2.3rem); }
+}
